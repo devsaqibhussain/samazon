@@ -38,11 +38,11 @@ const AddProduct = () => {
           <li>Add-Product</li>
         </ul>
       </div>
+      <h1 className=" text-2xl font-bold mt-4 rounded-xl bg-base-100 p-4">Add Product</h1>
       <form
         className="form-control mt-4 rounded-xl bg-base-100 p-4"
         action={createProduct}
       >
-        <h1 className="mb-4 text-2xl font-bold">Add Product</h1>
         <label className="label">
           <span className="label-text text-base font-semibold">
             Product Name:

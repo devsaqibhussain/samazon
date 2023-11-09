@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="cupcake">
       <body className={inter.className}>
-        <main className=" container mx-auto px-4">
+        <main className=" container mx-auto p-4 ">
           {children}
         </main>
       </body>

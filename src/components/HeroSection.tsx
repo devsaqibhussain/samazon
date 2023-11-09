@@ -11,12 +11,12 @@ interface ProductProps {
 const HeroSection = ({ product }: ProductProps) => {
   return (
     <div className="hero bg-base-100 rounded-xl">
-      <div className="hero-content flex-col lg:flex-row">
+      <div className="hero-content flex-col md:flex-row">
         <Image
           src={product.imageUrl}
           alt={product.name}
-          width={800}
-          height={300}
+          width={400}
+          height={800}
           className="max-w-sm w-full rounded-lg shadow-2xl object-cover"
           priority
         />
