@@ -86,7 +86,7 @@ const AddProduct = () => {
           type="number"
           name="price"
           required
-          placeholder="Add product's price"
+          placeholder="Add product's price in dollars"
           className="input input-bordered w-full"
         />
 
