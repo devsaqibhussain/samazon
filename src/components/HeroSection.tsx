@@ -16,7 +16,7 @@ const HeroSection = ({ product }: ProductProps) => {
           width={400}
           height={800}
           className="w-full max-w-sm rounded-lg object-cover shadow-2xl"
-          priority
+          priority = {true}
         />
         <div>
           <h1 className="text-5xl font-bold">{product.name}</h1>

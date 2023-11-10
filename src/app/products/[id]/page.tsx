@@ -57,6 +57,7 @@ const ProductPage = async ({ params: { id } }: ProductPageProps) => {
             width={1000}
             height={500}
             className="max-h-[500px] w-full object-cover"
+            priority = {true}
           />
         </figure>
         <div className="card-body">
