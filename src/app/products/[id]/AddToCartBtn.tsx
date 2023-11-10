@@ -14,7 +14,7 @@ const AddToCartBtn = ({
   const [isPending, setTransition] = useTransition();
   const [success, setSuccess] = useState(false);
   return (
-    <div className=" flex items-center gap-2">
+    <div className=" flex flex-row-reverse sm:flex-row items-center gap-2">
       {isPending && (
         <span className="loading loading-bars loading-md text-primary" />
       )}

@@ -1,7 +1,8 @@
 import React from "react";
 import { Product } from "@prisma/client";
 import Image from "next/image";
-import Link from "next/link"
+import Link from "next/link";
+
 interface ProductProps {
   product: Product;
 }
@@ -16,7 +17,7 @@ const HeroSection = ({ product }: ProductProps) => {
           width={400}
           height={800}
           className="w-full max-w-sm rounded-lg object-cover shadow-2xl"
-          priority = {true}
+          priority={true}
         />
         <div>
           <h1 className="text-5xl font-bold">{product.name}</h1>

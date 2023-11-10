@@ -63,7 +63,7 @@ const ProductPage = async ({ params: { id } }: ProductPageProps) => {
         <div className="card-body">
           <h2 className="card-title">{product.name}</h2>
           <p className="max-w-[800px]">{product.description}</p>
-          <div className="card-actions items-center justify-between">
+          <div className="card-actions flex-col sm:flex-row items-start sm:items-center justify-between">
             <PriceTag
               price={product.price}
               className=" badge-primary badge-lg"
