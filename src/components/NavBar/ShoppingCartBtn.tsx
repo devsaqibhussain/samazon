@@ -30,8 +30,8 @@ const ShoppingCartBtn = ({ cart }: ShoppingCartBtnProps) => {
         className="card dropdown-content card-compact z-[1] mt-3 w-52 bg-base-100 shadow"
       >
         <div className="card-body">
-          <span className="text-lg font-bold">{cart?.size || 0} Items</span>
-          <span className="text-info">
+          <span className="text-info text-lg font-bold">Items: <span className="badge badge-neutral">{cart?.size || 0} Item(s)</span></span>
+          <span className="text-info text-md font-bold">
             Subtotal: <PriceTag price={cart?.subTotal || 0} className=" badge-neutral "/>
           </span>
           <div className="card-actions">

@@ -19,8 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="cupcake">
       <body className={inter.className}>
-          <NavBar/>
-        <main className=" container mx-auto p-4 ">
+        <NavBar/>
+        <main className=" container mx-auto p-4 min-h-[70vh]">
           {children}
         </main>
         <Footer/>
