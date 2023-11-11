@@ -5,12 +5,14 @@ import { CartItemsWithProducts } from "@/lib/db/cart";
 import Image from "next/image";
 import Link from "next/link";
 import { ChangeProductQuantity } from "./actions";
+import { useTransition } from "react";
 
 interface CartEntryProps {
   cartItem: CartItemsWithProducts;
 }
 
 const CartEntries = ({ cartItem: { product, quantity } }: CartEntryProps) => {
+  const [isPending, setTransition] = useTransition();
   const quantityOptions: JSX.Element[] = [];
   for (let i: number = 0; i <= 99; i++) {
     quantityOptions.push(
@@ -46,19 +48,27 @@ const CartEntries = ({ cartItem: { product, quantity } }: CartEntryProps) => {
               className="select select-bordered w-full max-w-[80px]"
               defaultValue={quantity}
               onChange={(e) => {
-                ChangeProductQuantity(product.id, Number(e.target.value));
+                setTransition(async () => {
+                  await ChangeProductQuantity(
+                    product.id,
+                    parseInt(e.target.value),
+                  );
+                });
               }}
             >
               {quantityOptions}
             </select>
           </div>
-          <p className=" text-lg font-bold">
-            Total Price:{" "}
-            <PriceTag
-              price={product.price * quantity}
-              className=" badge-neutral"
-            />
-          </p>
+          <div className="flex items-center gap-2">
+            <p className=" text-lg font-bold">
+              Total Price:{" "}
+              <PriceTag
+                price={product.price * quantity}
+                className=" badge-neutral"
+              />
+            </p>
+              {isPending && <span className=" loading loading-bars text-primary" />}
+          </div>
         </div>
       </div>
     </div>

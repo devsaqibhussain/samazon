@@ -10,7 +10,7 @@ interface ProductProps {
 const HeroSection = ({ product }: ProductProps) => {
   return (
     <div className="hero rounded-xl bg-base-100">
-      <div className="hero-content flex-col md:flex-row">
+      <div className="hero-content flex-col lg:flex-row">
         <Image
           src={product.imageUrl}
           alt={product.name}

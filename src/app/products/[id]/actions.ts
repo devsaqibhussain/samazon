@@ -28,5 +28,5 @@ export const IncrementProductQuantity = async (productId:string) => {
     });
   }
 
-  revalidatePath("/products/[id]")
+  revalidatePath("/products/[id]","layout")
 };

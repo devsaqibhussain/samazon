@@ -2,6 +2,8 @@ import prisma from "@/lib/db/prisma";
 import React from "react";
 import { redirect } from "next/navigation";
 import FormSubmitButton from "@/components/buttons/FormSubmitButton";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export const metadata = {
   title: "Add Product - Samazon",
@@ -10,6 +12,11 @@ export const metadata = {
 // Using server actions:
 const createProduct = async (formData: FormData) => {
   "use server";
+
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/api/auth/signin?callbackUrl=/add-product");
+  }
 
   const name = formData.get("name")?.toString();
   const description = formData.get("description")?.toString();
@@ -27,7 +34,11 @@ const createProduct = async (formData: FormData) => {
   redirect("/");
 };
 
-const AddProduct = () => {
+const AddProduct = async () => {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/api/auth/signin?callbackUrl=/add-product");
+  }
   return (
     <div>
       <div className="breadcrumbs text-sm">
@@ -38,7 +49,9 @@ const AddProduct = () => {
           <li>Add-Product</li>
         </ul>
       </div>
-      <h1 className=" text-2xl font-bold mt-4 rounded-xl bg-base-100 p-4">Add Product</h1>
+      <h1 className=" mt-4 rounded-xl bg-base-100 p-4 text-2xl font-bold">
+        Add Product
+      </h1>
       <form
         className="form-control mt-4 rounded-xl bg-base-100 p-4"
         action={createProduct}

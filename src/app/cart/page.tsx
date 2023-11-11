@@ -25,6 +25,7 @@ const CartPage = async () => {
                 <CartEntries cartItem={item} />
               </div>
             ))}
+            {cart?.items.length === 0 && <p className="bg-base-100 p-4 rounded-xl">Feels empty in here, how about you add some products to cart.</p>}
           </div>
           <div className=" mt-4 flex justify-between rounded-xl bg-base-100 p-4">
             <h2 className=" text-lg font-semibold">SubTotal:</h2>

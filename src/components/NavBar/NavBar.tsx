@@ -2,11 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 import logo from "@/assets/logo.png";
-import defaultPpf from "@/assets/defaultPfp.jpg";
 
 import { redirect } from "next/navigation";
 import ShoppingCartBtn from "./ShoppingCartBtn";
 import { GetCart } from "@/lib/db/cart";
+import UserAccountBtn from "./UserAccountBtn";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const searchProducts = async (formData: FormData) => {
   "use server";
@@ -18,6 +20,7 @@ const searchProducts = async (formData: FormData) => {
 };
 
 const NavBar = async () => {
+  const session = await getServerSession(authOptions);
   const cart = await GetCart();
   return (
     <div className=" mx-auto">
@@ -51,36 +54,9 @@ const NavBar = async () => {
           </form>
           {/* Shopping Cart */}
           <ShoppingCartBtn cart={cart} />
+
           {/* Profile Picture */}
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="avatar btn btn-circle btn-ghost">
-              <div className="w-10 rounded-full">
-                <Image
-                  src={defaultPpf}
-                  alt="profile pic"
-                  width={40}
-                  height={40}
-                />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
-            >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div>
+          <UserAccountBtn session={session} />
         </div>
       </div>
     </div>
