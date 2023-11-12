@@ -104,15 +104,22 @@ export const MergeLocalCartWithUserCart = async (userId: string) => {
     if (userCart) {
       //merge
       const mergedCarts = MergeCarts(localCart.items, userCart.items);
+
       await tx.cartItems.deleteMany({
         where: { cartId: userCart.id },
       });
-      await tx.cartItems.createMany({
-        data: mergedCarts.map((item) => ({
-          cartId: userCart.id,
-          productId: item.productId,
-          quantity: item.quantity,
-        })),
+      await tx.cart.update({
+        where: { id: userCart.id },
+        data: {
+          items: {
+            createMany: {
+              data: mergedCarts.map((item) => ({
+                productId: item.productId,
+                quantity: item.quantity,
+              })),
+            },
+          },
+        },
       });
     } else {
       //create user cart with local cart items
@@ -131,9 +138,9 @@ export const MergeLocalCartWithUserCart = async (userId: string) => {
       });
     }
     tx.cart.delete({
-      where:{id:localCart.id}
-    })
-    cookies().set("localCartId","")
+      where: { id: localCart.id },
+    });
+    cookies().set("localCartId", "");
     //delete local cart
     //delete cookies
   });

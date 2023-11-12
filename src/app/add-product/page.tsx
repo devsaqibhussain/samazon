@@ -26,7 +26,7 @@ const createProduct = async (formData: FormData) => {
   if (!name || !description || !imageUrl || !price) {
     throw Error("Missing the required fields");
   }
-
+  
   await prisma.product.createMany({
     data: { name, description, imageUrl, price },
   });
